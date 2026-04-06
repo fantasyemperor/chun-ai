@@ -42,7 +42,7 @@ class ChunAiApplicationTests {
     @Test
     void ragSearch() {
         String chatId = UUID.randomUUID().toString();
-        String message = "你好，请介绍一下你自己";
+        String message = "你好，面试常见的问题是什么？初次之外今天星期几";
         String answer = ragSearchApp.chat(message, chatId);
         Assertions.assertNotNull(answer);
     }
