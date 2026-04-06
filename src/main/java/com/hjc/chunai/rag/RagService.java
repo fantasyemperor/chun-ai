@@ -28,10 +28,16 @@ public class RagService {
                 )
                 .build();
 
+        System.out.println("rag使用了");
         this.chatClient = builder
                 .defaultAdvisors(advisor)
                 .build();
+
+
     }
+
+
+
 
     public String ask(String question) {
         return chatClient.prompt()

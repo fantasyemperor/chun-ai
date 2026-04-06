@@ -1,5 +1,6 @@
 package com.hjc.chunai;
 
+import com.hjc.chunai.demo.RagSearchApp;
 import com.hjc.chunai.demo.app;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,9 @@ class ChunAiApplicationTests {
 
     @Autowired
     private app app1;
+
+    @Autowired
+    private RagSearchApp ragSearchApp;
 
 
 
@@ -33,6 +37,14 @@ class ChunAiApplicationTests {
 //        answer = app1.chat(message, chatId);
 //        Assertions.assertNotNull(answer);
 
+    }
+
+    @Test
+    void ragSearch() {
+        String chatId = UUID.randomUUID().toString();
+        String message = "你好，请介绍一下你自己";
+        String answer = ragSearchApp.chat(message, chatId);
+        Assertions.assertNotNull(answer);
     }
 
 }

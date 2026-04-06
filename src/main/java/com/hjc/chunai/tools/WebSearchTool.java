@@ -46,6 +46,7 @@ public class WebSearchTool {
                 return tmpJSONObject.toString();
             }).collect(Collectors.joining(","));
             log.info(result);
+            System.out.println("search使用了");
             return result;
 
         } catch (Exception e) {
