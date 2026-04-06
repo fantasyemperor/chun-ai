@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: chun-ai
+  ai:
+    dashscope:
+      api-key: sk-b9439a56e4a642cfb53d1e5c24dc9875
+      embedding:
+        options:
+          model: text-embedding-v4
+      chat:
+        options:
+          model: qwen3-max
+# searchApi
+search-api:
+  api-key: 6mWjWUQBAUWNYrBZfaTeQFMK
+
+
