@@ -80,7 +80,7 @@ public abstract class BaseAgent {
                 state = AgentState.FINISHED;
                 results.add("Terminated: Reached max steps (" + maxSteps + ")");
             }
-            return String.join("\n", results);
+            return summarize(results);
         } catch (Exception e) {
             state = AgentState.ERROR;
             log.error("error executing agent", e);
@@ -142,6 +142,9 @@ public abstract class BaseAgent {
                     results.add("Terminated: Reached max steps (" + maxSteps + ")");
                     sseEmitter.send("执行结束：达到最大步骤（" + maxSteps + "）");
                 }
+                // 所有步骤完成后，发送 AI 总结
+                String summary = summarize(results);
+                sseEmitter.send("【AI总结】" + summary);
                 // 正常完成
                 sseEmitter.complete();
             } catch (Exception e) {
@@ -182,6 +185,16 @@ public abstract class BaseAgent {
      * @return
      */
     public abstract String step();
+
+    /**
+     * 对所有步骤结果进行总结，子类可覆盖以实现 AI 总结
+     *
+     * @param results 所有步骤的结果列表
+     * @return 总结内容
+     */
+    protected String summarize(List<String> results) {
+        return String.join("\n", results);
+    }
 
     /**
      * 清理资源，重置状态以便单例 Agent 可以重复使用

@@ -20,21 +20,24 @@ public class AiController {
     }
 
     /**
-     * 流式调用 Manus 超级智能体
-     *
-     * @param message 用户输入的消息
-     * @return SSE 流式响应
+     * 流式输出ai处理过程
      */
     @GetMapping(value = "/manus/SseChat", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter doChatWithManus(@RequestParam String message) {
         return yuManus.runStream(message);
     }
 
-    @GetMapping(value = "/manus/chat")
+    /**
+     * ai完整返回的内容
+     */
+     @GetMapping(value = "/manus/chat")
     public String ChatWithManus(@RequestParam String message) {
         return yuManus.run(message);
 
     }
+    /**
+     * 将ai完整返回的内容再流式发给用户
+     */
 
 
 }

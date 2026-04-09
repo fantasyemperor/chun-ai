@@ -20,6 +20,7 @@ public class YuManus extends ToolCallAgent {
         String SYSTEM_PROMPT = """
                 You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user.
                 You have various tools at your disposal that you can call upon to efficiently complete complex requests.
+                IMPORTANT: The current operating system is Windows. When executing terminal commands, you MUST use Windows-compatible commands (cmd.exe syntax). Do NOT use Linux/macOS commands (e.g., use `echo %DATE%` instead of `date`, use `dir` instead of `ls`, use `type` instead of `cat`, etc.).
                 """;
         this.setSystemPrompt(SYSTEM_PROMPT);
         String NEXT_STEP_PROMPT = """

@@ -132,4 +132,26 @@ public class ToolCallAgent extends ReActAgent {
         log.info(results);
         return results;
     }
+
+    /**
+     * 利用完整的对话历史（messageList）向 AI 发起一次总结请求
+     */
+    @Override
+    protected String summarize(List<String> results) {
+        try {
+            String allSteps = String.join("\n", results);
+            String summaryPrompt = "以下是本次任务执行过程中所有步骤的结果：\n" + allSteps + "\n\n请用简洁清晰的语言总结本次任务的执行结果。";
+            getMessageList().add(new UserMessage(summaryPrompt));
+            Prompt prompt = new Prompt(getMessageList(), this.chatOptions);
+            String summary = getChatClient().prompt(prompt)
+                    .system(getSystemPrompt())
+                    .call()
+                    .content();
+            log.info("AI总结：{}", summary);
+            return summary;
+        } catch (Exception e) {
+            log.error("生成总结时出错：{}", e.getMessage());
+            return String.join("\n", results);
+        }
+    }
 }
