@@ -1,9 +1,12 @@
 package com.hjc.chunai;
 
+import com.hjc.chunai.agent.ToolCallAgent;
 import com.hjc.chunai.demo.RagSearchApp;
 import com.hjc.chunai.demo.app;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.ai.support.ToolCallbacks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,6 +20,9 @@ class ChunAiApplicationTests {
 
     @Autowired
     private RagSearchApp ragSearchApp;
+
+    @Autowired
+    private ChatModel chatModel;
 
 
 
