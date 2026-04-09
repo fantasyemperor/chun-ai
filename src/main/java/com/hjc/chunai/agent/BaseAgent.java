@@ -184,9 +184,11 @@ public abstract class BaseAgent {
     public abstract String step();
 
     /**
-     * 清理资源
+     * 清理资源，重置状态以便单例 Agent 可以重复使用
      */
     protected void cleanup() {
-        // 子类可以重写此方法来清理资源
+        this.state = AgentState.IDLE;
+        this.currentStep = 0;
+        this.messageList = new ArrayList<>();
     }
 }
