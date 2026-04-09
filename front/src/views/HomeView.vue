@@ -32,6 +32,7 @@ const {
     <main class="center-panel">
       <div class="chat-header">
         <h1 class="app-title">YuChun AI</h1>
+        <p class="app-subtitle">自主规划智能体</p>
       </div>
       <MessageList :messages="messages" :is-running="isRunning" />
       <ChatInput :disabled="isRunning" @send="send" />
@@ -65,19 +66,33 @@ const {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  background: linear-gradient(160deg, #e8eaf6 0%, #f5f7fa 40%, #e3f2fd 100%);
 }
 
 .chat-header {
-  padding: 14px 20px;
-  border-bottom: 1px solid #ebeef5;
-  background: #fff;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(200, 210, 230, 0.5);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
 }
 
 .app-title {
   margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  color: #303133;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #409eff 0%, #6366f1 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.app-subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #909399;
+  letter-spacing: 1px;
 }
 
 .right-panel {
