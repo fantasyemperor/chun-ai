@@ -27,12 +27,12 @@ public class DocumentLoader implements CommandLineRunner {
                 .withHorizontalRuleCreateDocument(true)  // 水平线处切分
                 .withIncludeCodeBlock(false)             // 代码块独立成文档
                 .withIncludeBlockquote(false)            // 引用块独立成文档
-                .withAdditionalMetadata("source", "面试常见问题与回答.md")
+                .withAdditionalMetadata("source", "1.md")
                 .build();
 
         // 读取 Markdown 文件
         MarkdownDocumentReader reader = new MarkdownDocumentReader(
-                new ClassPathResource("md/面试常见问题与回答.md"),
+                new ClassPathResource("md/1.md"),
                 config
         );
 

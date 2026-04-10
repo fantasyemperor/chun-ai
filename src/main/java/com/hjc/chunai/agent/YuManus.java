@@ -14,15 +14,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class YuManus extends ToolCallAgent {
 
+    private final String win = "You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user. You have various tools at your disposal that you can call upon to efficiently complete complex requests. IMPORTANT: The current operating system is Windows. When executing terminal commands, you MUST use Windows-compatible commands (cmd.exe syntax). Do NOT use Linux/macOS commands (e.g., use `echo %DATE%` instead of `date`, use `dir` instead of `ls`, use `type` instead of `cat`, etc.";
+    private final String linux="You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user. You have various tools at your disposal that you can call upon to efficiently complete complex requests. IMPORTANT: The current operating system is Linux. When executing terminal commands, you MUST use Linux-compatible commands (Bash syntax). Do NOT use Windows/macOS commands (e.g., use ls instead of dir, use cat instead of type, use echo $VAR instead of echo %VAR%, etc.).";
+
+
     public YuManus(ToolCallback[] toolCallbacks, ChatModel dashscopeChatModel) {
         super(toolCallbacks);
         this.setName("yuManus");
-        String SYSTEM_PROMPT = """
-                You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user.
-                You have various tools at your disposal that you can call upon to efficiently complete complex requests.
-                IMPORTANT: The current operating system is Windows. When executing terminal commands, you MUST use Windows-compatible commands (cmd.exe syntax). Do NOT use Linux/macOS commands (e.g., use `echo %DATE%` instead of `date`, use `dir` instead of `ls`, use `type` instead of `cat`, etc.).
-                """;
+        String SYSTEM_PROMPT = linux;
         this.setSystemPrompt(SYSTEM_PROMPT);
+        //TODO linux版本
+        //You are YuManus, an all-capable AI assistant, aimed at solving any task presented by the user. You have various tools at your disposal that you can call upon to efficiently complete complex requests. IMPORTANT: The current operating system is Linux. When executing terminal commands, you MUST use Linux-compatible commands (Bash syntax). Do NOT use Windows/macOS commands (e.g., use ls instead of dir, use cat instead of type, use echo $VAR instead of echo %VAR%, etc.).
+        //
         String NEXT_STEP_PROMPT = """
                 Based on user needs, proactively select the most appropriate tool or combination of tools.
                 For complex tasks, you can break down the problem and use different tools step by step to solve it.

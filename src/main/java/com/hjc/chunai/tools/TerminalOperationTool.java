@@ -8,23 +8,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
-/**
- * 终端操作工具
- */
 @Component
 public class TerminalOperationTool {
+
+    //TODO
+    private static final boolean IS_WINDOWS = false;
 
     @Tool(description = "Execute a command in the terminal")
     public String executeTerminalCommand(@ToolParam(description = "Command to execute in the terminal") String command) {
         StringBuilder output = new StringBuilder();
-        // Windows cmd.exe 默认使用 GBK 编码输出
-        Charset charset = Charset.forName("GBK");
+
+        ProcessBuilder builder;
+        Charset charset;
+        if (IS_WINDOWS) {
+            builder = new ProcessBuilder("cmd.exe", "/c", command);
+            charset = Charset.forName("GBK");
+        } else {
+            builder = new ProcessBuilder("/bin/sh", "-c", command);
+            charset = StandardCharsets.UTF_8;
+        }
+        builder.redirectErrorStream(true);
+
         try {
-            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", command);
-            builder.redirectErrorStream(true);
             Process process = builder.start();
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream(), charset))) {
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream(), charset))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     output.append(line).append("\n");
