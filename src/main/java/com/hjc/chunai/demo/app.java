@@ -41,8 +41,7 @@ public class app   {
             // 步骤3: 构建 ChatClient
             chatClient = ChatClient.builder(dashscopeChatModel)
                     .defaultSystem(SYSTEM_PROMPT)
-                    .defaultAdvisors(memoryAdvisor,new  SimpleLoggingAdvisor())
-                    .defaultTools(webSearchTool)
+                    .defaultAdvisors(memoryAdvisor, new SimpleLoggingAdvisor())
                     .build();
         }
 

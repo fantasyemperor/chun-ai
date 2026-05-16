@@ -67,6 +67,13 @@
             <version>1.1.2</version>
         </dependency>
 
+        <!-- Qdrant 向量库（持久化） -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-vector-store-qdrant</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

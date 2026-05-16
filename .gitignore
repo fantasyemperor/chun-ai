@@ -31,3 +31,14 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 本地密钥（勿提交） ###
+.env
+src/main/resources/application-local.yml
+
+### 构建 / 本地 IDE ###
+front/tsconfig.tsbuildinfo
+front/dist/
+.claude/
+.agents/
+skills-lock.json
